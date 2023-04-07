@@ -5,7 +5,7 @@ import Description from "./components/Description";
 import Images from "./components/Images";
 import Reviews from "./components/Reviews";
 import ReservationCard from "./components/ReservationCard";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Review } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +15,7 @@ interface Restaurant {
   images: string[];
   description: string;
   slug: string;
+  reviews: Review[];
 }
 
 const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
@@ -28,6 +29,7 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
       images: true,
       description: true,
       slug: true,
+      reviews: true,
     },
   });
 
@@ -44,16 +46,15 @@ export default async function RestaurantDetails({
   params: { slug: string };
 }) {
   const restaurant = await fetchRestaurantBySlug(params.slug);
-  console.log(restaurant);
 
   return (
     <>
       <RestaurantNavBar slug={restaurant.slug} />
       <Title name={restaurant.name} />
-      <Rating />
+      <Rating reviews={restaurant.reviews} />
       <Description description={restaurant.description} />
       <Images images={restaurant.images} />
-      <Reviews />
+      <Reviews reviews={restaurant.reviews} />
       <div className='w-[27%] relative text-reg'>
         <ReservationCard />
       </div>
