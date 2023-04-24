@@ -25,7 +25,7 @@ const useAuth = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/signin",
+        "https://next-js-booking.netlify.app/api/auth/signin",
         {
           email,
           password,
@@ -72,7 +72,7 @@ const useAuth = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        "https://next-js-booking.netlify.app/api/auth/signup",
         {
           email,
           password,

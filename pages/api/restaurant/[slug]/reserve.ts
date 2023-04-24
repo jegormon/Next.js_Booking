@@ -146,5 +146,3 @@ export default async function handler(
     return res.json(booking);
   }
 }
-
-// http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/reserve?day=2023-05-27&time=20:00:00.000Z&partySize=4
